@@ -2,6 +2,10 @@ import sys
 import sqlite3
 from abc import ABC, abstractmethod
 
+from PyQt6.QtWidgets import (
+    QApplication, QWidget, QPushButton, QGridLayout, QFrame,
+    QLineEdit, QLabel, QTableWidget, QTableWidgetItem
+
 class BaseDatabase(ABC):
     @abstractmethod
     def creer_table(self):
