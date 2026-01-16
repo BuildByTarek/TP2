@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QPushButton, QGridLayout, QFrame,
-    QLineEdit, QLabel, QTableWidget, QTableWidgetItem
+    QLineEdit, QLabel, QTableWidget, QTableWidgetItem)
 
 class BaseDatabase(ABC):
     @abstractmethod
