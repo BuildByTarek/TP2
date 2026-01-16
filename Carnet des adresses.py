@@ -105,3 +105,90 @@ class Annuaire:
 
     def tout(self):
         return self.db.selectionner_tout()
+
+base = SQLitePersonsDatabase("carnet.db")
+annuaire = Annuaire(base)
+
+def creer_table():
+    annuaire.creer_table()
+    afficher_tout()
+
+def inserer():
+    pid = qLineID.text()
+    nom = qLineNom.text()
+    prenom = qLinePrenom.text()
+    mail = qLineMail.text()
+    annuaire.ajouter(pid, nom, prenom, mail)
+    afficher_tout()
+
+def enregistrer_modification():
+    pid = qLineID.text()
+    nom = qLineNom.text()
+    prenom = qLinePrenom.text()
+    mail = qLineMail.text()
+    annuaire.modifier(pid, nom, prenom, mail)
+    afficher_tout()
+
+def supprimer():
+    pid = qLineSuppID.text()
+    annuaire.supprimer(pid)
+    afficher_tout()
+
+def afficher_tout():
+    resultat = annuaire.tout()
+
+    qtab.setRowCount(len(resultat))
+    qtab.setColumnCount(4)
+    qtab.setHorizontalHeaderLabels(["id", "nom", "prenom", "mail"])
+
+    for i in range(len(resultat)):
+        for j in range(4):
+            qtab.setItem(i, j, QTableWidgetItem(str(resultat[i][j])))
+
+def get_clicked_cell(row, column):
+    id_item = qtab.item(row, 0)
+    nom_item = qtab.item(row, 1)
+    prenom_item = qtab.item(row, 2)
+    mail_item = qtab.item(row, 3)
+
+    if id_item:
+        qLineID.setText(id_item.text())
+        qLineSuppID.setText(id_item.text())
+
+    if nom_item:
+        qLineNom.setText(nom_item.text())
+
+    if prenom_item:
+        qLinePrenom.setText(prenom_item.text())
+
+    if mail_item:
+        qLineMail.setText(mail_item.text())
+app = QApplication(sys.argv)
+win = QWidget()
+win.setGeometry(100, 100, 700, 500)
+win.setWindowTitle("Carnet d'adresses")
+
+frame = QFrame(win)
+frame.setGeometry(20, 20, 660, 460)
+
+grid = QGridLayout()
+frame.setLayout(grid)
+labelTitre = QLabel(win)
+labelTitre.setText("Carnet d'adresses")
+grid.addWidget(labelTitre, 0, 0, 1, 4)
+labelID = QLabel(win)
+labelID.setText("ID")
+grid.addWidget(labelID, 1, 0)
+
+labelNom = QLabel(win)
+labelNom.setText("Nom")
+grid.addWidget(labelNom, 1, 1)
+
+labelPrenom = QLabel(win)
+labelPrenom.setText("Prénom")
+grid.addWidget(labelPrenom, 1, 2)
+
+labelMail = QLabel(win)
+labelMail.setText("E-Mail")
+grid.addWidget(labelMail, 1, 3)
+
