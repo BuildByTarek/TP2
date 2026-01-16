@@ -244,3 +244,6 @@ qtab.setColumnCount(4)
 qtab.setHorizontalHeaderLabels(["ID", "nom", "prenom", "mail"])
 qtab.cellClicked.connect(get_clicked_cell)
 grid.addWidget(qtab, 6, 0, 2, 4)
+
+win.show()
+sys.exit(app.exec())
