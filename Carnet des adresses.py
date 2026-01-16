@@ -81,3 +81,23 @@ class SQLitePersonsDatabase(BaseDatabase):
         resultat = cursor.fetchall()
         conn.close()
         return resultat
+
+class Annuaire:
+
+    def __init__(self, db: BaseDatabase):
+        self.db = db
+
+    def creer_table(self):
+        self.db.creer_table()
+
+    def ajouter(self, pid, nom, prenom, mail):
+        self.db.inserer_personne(pid, nom, prenom, mail)
+
+    def modifier(self, pid, nom, prenom, mail):
+        self.db.modifier_personne(pid, nom, prenom, mail)
+
+    def supprimer(self, pid):
+        self.db.supprimer_personne(pid)
+
+    def tout(self):
+        return self.db.selectionner_tout()
