@@ -192,3 +192,55 @@ labelMail = QLabel(win)
 labelMail.setText("E-Mail")
 grid.addWidget(labelMail, 1, 3)
 
+qLineID = QLineEdit(win)
+grid.addWidget(qLineID, 2, 0)
+
+qLineNom = QLineEdit(win)
+grid.addWidget(qLineNom, 2, 1)
+
+qLinePrenom = QLineEdit(win)
+grid.addWidget(qLinePrenom, 2, 2)
+
+qLineMail = QLineEdit(win)
+grid.addWidget(qLineMail, 2, 3)
+
+
+labelSupp = QLabel(win)
+labelSupp.setText("ID à supprimer")
+grid.addWidget(labelSupp, 3, 0)
+
+qLineSuppID = QLineEdit(win)
+grid.addWidget(qLineSuppID, 3, 1)
+
+
+btnCreer = QPushButton(win)
+btnCreer.setText("Créer Table")
+btnCreer.clicked.connect(creer_table)
+grid.addWidget(btnCreer, 4, 0)
+
+btnInserer = QPushButton(win)
+btnInserer.setText("Insérer")
+btnInserer.clicked.connect(inserer)
+grid.addWidget(btnInserer, 4, 1)
+
+btnModifier = QPushButton(win)
+btnModifier.setText("Modifier-Enregistrer")
+btnModifier.clicked.connect(enregistrer_modification)
+grid.addWidget(btnModifier, 4, 2)
+
+btnSupprimer = QPushButton(win)
+btnSupprimer.setText("DELETE")
+btnSupprimer.clicked.connect(supprimer)
+grid.addWidget(btnSupprimer, 4, 3)
+
+btnAfficher = QPushButton(win)
+btnAfficher.setText("Afficher Tout")
+btnAfficher.clicked.connect(afficher_tout)
+grid.addWidget(btnAfficher, 5, 0)
+
+qtab = QTableWidget(win)
+qtab.setRowCount(4)
+qtab.setColumnCount(4)
+qtab.setHorizontalHeaderLabels(["ID", "nom", "prenom", "mail"])
+qtab.cellClicked.connect(get_clicked_cell)
+grid.addWidget(qtab, 6, 0, 2, 4)
